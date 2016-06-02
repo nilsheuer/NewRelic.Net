@@ -19,6 +19,13 @@ namespace NewRelicSDK.Models
         public DateTime LastReportedAt { get; set; }
         [JsonProperty("application_summary")]
         public ApplicationSummary ApplicationSummary { get; set; }
+        [JsonProperty("end_user_summary")]
+        public EndUserSummary EndUserSummary { get; set; }
+        [JsonProperty("settings")]
+        public ApplicationSettings Settings { get; set; }
+        [JsonProperty("links")]
+        public ApplicationLinks Links { get; set; }
+
 
     }
 
@@ -41,6 +48,47 @@ namespace NewRelicSDK.Models
         [JsonProperty("concurrent_instance_count")]
         public int ConcurrentInstanceCount { get; set; }
 
-  
+
     }
+
+
+    public class EndUserSummary
+    {
+        [JsonProperty("response_time")]
+        public float ResponseTime { get; set; }
+        [JsonProperty("throughput")]
+        public float ThroughPut { get; set; }
+        [JsonProperty("error_rate")]
+        public float ErrorRate { get; set; }
+        [JsonProperty("apdex_target")]
+        public float ApdexTarget { get; set; }
+        [JsonProperty("apdex_score")]
+        public float ApdexScore { get; set; }
+    }
+
+    public class ApplicationSettings
+    {
+        [JsonProperty("app_apdex_threshold")]
+        public float AppApdexThreshold { get; set; }
+        [JsonProperty("end_user_apdex_threshold")]
+        public float EndUserApdexThreshold { get; set; }
+        [JsonProperty("enable_real_user_monitoring")]
+        public bool EnableRealUserMonitoring { get; set; }
+        [JsonProperty("use_server_side_config")]
+        public bool UserServerSideConfig { get; set; }
+
+    }
+
+    public class ApplicationLinks
+    {
+        [JsonProperty("servers")]
+        public List<int> ServerIds { get; set; }
+        [JsonProperty("application_hosts")]
+        public List<int> ApplicationHostIds { get; set; }
+        [JsonProperty("application_instances")]
+        public List<int> ApplicationInstanceIds { get; set; }
+        [JsonProperty("alert_policy")]
+        public int AlertPolicyId { get; set; }
+    }
+
 }

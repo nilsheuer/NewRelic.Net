@@ -4,6 +4,7 @@ using NewRelicSDK.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -17,28 +18,20 @@ namespace NewRelicSDKSample.Controllers
     {
         public async System.Threading.Tasks.Task<ActionResult> Index()
         {
-            /*
-            var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Add("X-Api-Key", "19d96252176c86a550aeb0587db5cca8a81217404f3366d");
-                string response =  await httpClient.GetStringAsync("https://api.newrelic.com/v2/applications/6080786/metrics/data.json?names[]=Agent/MetricsReported/count&summarize=false&raw=true");
 
-            var eventHubClient = EventHubClient.CreateFromConnectionString("Endpoint=sb://nreventhub-ns.servicebus.windows.net/;SharedAccessKeyName=send;SharedAccessKey=a02n8662gTNgzlEuV3678SIpSn9htWLBwMbF31+t5Ko=;EntityPath=nreventhub");
+            string newRelicApiKey = ConfigurationManager.AppSettings["NewRelicApiKey"];
 
-            MetricData myMetricData = JsonConvert.DeserializeObject<MetricData>(response);
-
-            foreach (Metric myMetric in myMetricData.metric_data.Metrics)
-            {
-                foreach (Timeslice myTimeslice in myMetric.Timeslices)
-                {
-                    string timesliceJson = JsonConvert.SerializeObject(myTimeslice);
-                    eventHubClient.Send(new EventData(Encoding.UTF8.GetBytes(timesliceJson)));
-                }
-            }
-            */
-            NewRelicClient myClient = new NewRelicClient("19d96252176c86a550aeb0587db5cca8a81217404f3366d");
+             NewRelicClient myClient = new NewRelicClient(newRelicApiKey);
             List<Application> myApps = await myClient.ListApplications();
 
-            
+            Application myApp1 = await myClient.GetApplication(myApps[1]);
+            Application myApp2 = await myClient.GetApplication(6080786);
+            Application appToUpdate = myApps.Where(a => a.Id == 6080226).Single();
+            appToUpdate.Name = "Origami Portal Staging";
+            Application updatedApp = await myClient.UpdateApplication(appToUpdate);
+            //Application myApp3 = await myClient.GetApplication(23472434);
+
+
             return View();
         }
 

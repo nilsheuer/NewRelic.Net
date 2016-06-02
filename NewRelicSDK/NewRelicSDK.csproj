@@ -47,7 +47,10 @@
     <Compile Include="Applications.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Models\Application.cs" />
+    <Compile Include="Models\ApplicationUpdate.cs" />
+    <Compile Include="Models\Dto\ApplicationDto.cs" />
     <Compile Include="Models\Dto\ApplicationListDto.cs" />
+    <Compile Include="Models\Dto\ApplicationUpdateDto.cs" />
     <Compile Include="Models\Dto\timesliceDto.cs" />
     <Compile Include="Models\Metric.cs" />
     <Compile Include="Models\MetricData.cs" />
