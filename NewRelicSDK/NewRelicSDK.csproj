@@ -51,6 +51,7 @@
     <Compile Include="Models\Dto\ApplicationDto.cs" />
     <Compile Include="Models\Dto\ApplicationListDto.cs" />
     <Compile Include="Models\Dto\ApplicationUpdateDto.cs" />
+    <Compile Include="Models\Dto\MetricNamesListDto.cs" />
     <Compile Include="Models\Dto\timesliceDto.cs" />
     <Compile Include="Models\Metric.cs" />
     <Compile Include="Models\MetricData.cs" />

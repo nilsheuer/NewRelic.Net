@@ -27,10 +27,10 @@ namespace NewRelicSDKSample.Controllers
             Application myApp1 = await myClient.GetApplication(myApps[1]);
             Application appToUpdate = await myClient.GetApplication(myApps.First());
             //Application appToUpdate = myApps.Where(a => a.Id == 6080226).Single();
-            appToUpdate.Name = "Origami Portal Staging";
-            Application updatedApp = await myClient.UpdateApplication(appToUpdate);
+            //appToUpdate.Name = "Origami Portal Staging";
+            //Application updatedApp = await myClient.UpdateApplication(appToUpdate);
             //Application myApp3 = await myClient.GetApplication(23472434);
-
+            List<Metric> metricsForApp =await  myClient.GetMetricNames(myApp1);
 
             return View();
         }

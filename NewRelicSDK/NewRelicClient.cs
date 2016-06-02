@@ -41,7 +41,12 @@ namespace NewRelicSDK
                                                     Encoding.UTF8,
                                                     "application/json"));
             }
-            
+
+            if (method.Equals("DELETE"))
+            {
+                response = await httpClient.DeleteAsync(NewRelicApiUrl + url);
+            }
+
             if (response.IsSuccessStatusCode)
             {
                  getResponsestring = await response.Content.ReadAsStringAsync();
