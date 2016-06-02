@@ -25,8 +25,8 @@ namespace NewRelicSDKSample.Controllers
             List<Application> myApps = await myClient.ListApplications();
 
             Application myApp1 = await myClient.GetApplication(myApps[1]);
-            Application myApp2 = await myClient.GetApplication(6080786);
-            Application appToUpdate = myApps.Where(a => a.Id == 6080226).Single();
+            Application appToUpdate = await myClient.GetApplication(myApps.First());
+            //Application appToUpdate = myApps.Where(a => a.Id == 6080226).Single();
             appToUpdate.Name = "Origami Portal Staging";
             Application updatedApp = await myClient.UpdateApplication(appToUpdate);
             //Application myApp3 = await myClient.GetApplication(23472434);
